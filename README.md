@@ -13,6 +13,11 @@ See also [WIP plugin page](https://typesetter-addons.grafikrausz.at/YouTube-Embe
 1.0-b4
 
 
+## Screenshot
+
+![Screenshot](/screenshot-01.jpg?raw=true)
+
+
 ## Requirements ##
 * Typesetter CMS 5.0+
 
