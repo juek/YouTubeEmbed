@@ -1,0 +1,198 @@
+/*
+######################################################################
+CSS for for Typesetter CMS plugin YouTube Embed
+Author: J. Krausz
+Date: 2017-08-03
+Version 1.0b3
+######################################################################
+*/
+
+:invalid {
+outline:1px solid #F2664B!important;
+outline-offset:-4px!important;
+}
+
+.no-margin{
+margin:0!important;
+}
+
+/* EDITOR */
+
+#ts_YTE_options,
+#ts_YTE_options * {
+-webkit-box-sizing:border-box;
+-moz-box-sizing:border-box;
+-ms-box-sizing:border-box;
+-o-box-sizing:border-box;
+box-sizing:border-box;
+}
+
+.editor_ctl_box {
+display:block;
+position:relative;
+overflow:hidden;
+padding:2px 2px 0 2px;
+background:#fff;
+border:1px solid rgba(0,0,0,0.175);
+border-radius:3px;
+margin:3px 0 0;
+vertical-align:baseline;
+color:#555;
+}
+
+.editor_ctl_box input[type="text"],
+.editor_ctl_box input[type="number"],
+.editor_ctl_box select,
+.editor_ctl_box button,
+.editor_ctl_box textarea {
+-webkit-box-sizing:border-box;
+-moz-box-sizing:border-box;
+-ms-box-sizing:border-box;
+-o-box-sizing:border-box;
+box-sizing:border-box;
+background-color:none;
+border:none;
+padding:4px 6px;
+margin:0;
+width:100%!important;
+color:#555;
+}
+
+.editor_ctl_box select {
+-webkit-appearance:none;
+-moz-appearance:none;
+appearance:none;
+background:transparent url(img/select_arr.png) right center no-repeat;
+background-size:22px 16px;
+padding:4px 26px 4px 0;
+}
+
+.editor_ctl_box select::-ms-expand { display:none; }
+
+.editor_ctl_box button {
+background:#f3f3f3;
+background:-moz-linear-gradient(top, #fff 0%, #f3f3f3 100%);
+background:-webkit-linear-gradient(top, #fff 0%,#f3f3f3 100%);
+background:linear-gradient(to bottom, #fff 0%,#f3f3f3 100%);
+}
+
+
+.editor_ctl_box input[type='checkbox'],
+.editor_ctl_box input[type='radio'] {
+margin:6px;
+}
+
+.editor_ctl_box input[type='checkbox'] {
+margin-left:-20px;
+}
+
+.editor_ctl_box input[type='checkbox'] + span {
+display:inline-block;
+margin:0 6px 0 10px;
+font-family:FontAwesome!important;
+font-size:120%!important;
+cursor:pointer;
+}
+.editor_ctl_box input[type='checkbox'] + span:before {
+content:"\f204";
+}
+.editor_ctl_box input[type='checkbox']:checked + span:before {
+content:"\f205";
+}
+
+.editor_ctl_box button,
+.editor_ctl_box input[type='checkbox'],
+.editor_ctl_box input[type='radio'] {
+cursor:pointer;
+}
+
+.editor_ctl_box input:disabled,
+.editor_ctl_box select:disabled {
+color:#ccc;
+background:none;
+}
+
+.editor_ctl_box label {
+margin:0;
+display:inline-block;
+width:100%!important;
+}
+.editor_ctl_box label.ctl-50 {
+width:50%!important;
+}
+
+.editor_ctl_box label.has-icon {
+padding-left:24px;
+}
+
+.editor_ctl_box i.fa {
+display:inline-block;
+width:20px;
+margin-left:-20px;
+color:#888;
+}
+
+
+/* ELEMENT SPECIAL STYLES */
+
+div.editor_ctl_box.editor_ctl_edit_btn{
+border-color:#bf2116;
+margin-bottom:5px;
+}
+
+div.editor_ctl_box.editor_ctl_edit_btn i.fa {
+color:#fff!important; 
+}
+
+div.editor_ctl_box.editor_ctl_edit_btn button {
+background:#e62118;
+background:-moz-linear-gradient(top, #e62118 0%, #cc2e23 100%);
+background:-webkit-linear-gradient(top, #e62118 0%, #cc2e23 100%);
+background:linear-gradient(to bottom, #e62118 0%, #cc2e23 100%);
+filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e62118', endColorstr='#cc2e23', GradientType=0) ;
+color:#fff!important; 
+padding:6px;
+}
+
+.editor_ctl_box.editor_ctl_edit_btn,
+.editor_ctl_box.editor_ctl_code_editor{
+padding:0;
+}
+
+.editor_ctl_box.editor_ctl_edit_btn label {
+margin:0;
+}
+
+.editor_ctl_code_editor {
+display:none;
+}
+
+#ts_YTE_editor_msg {
+text-align:center;
+padding:4px 6px;
+background:rgba(0,0,0,0.125);
+}
+
+#ts_YTE_options textarea#ts_YTE_ec {
+font-family:Consolas,"Deja Vu Sans Mono",Menlo,Monaco,"Lucida Console",monospace;
+font-size:82.5%!important;
+white-space:normal;
+word-wrap:break-all;
+word-wrap:break-word;
+min-height:4em;
+resize:vertical;
+overflow-y:auto;
+height:12em;
+}
+
+a#ts_YTE_api_info { color:#00A4EA; }
+
+button#ts_YTE_apply_code, 
+button#ts_YTE_close_code {
+border-top:1px solid rgba(0, 0, 0, 0.176);
+width:50%!important;
+}
+
+button#ts_YTE_close_code {
+border-left:1px solid rgba(0, 0, 0, 0.176);
+}

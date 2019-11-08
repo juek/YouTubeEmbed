@@ -1,0 +1,40 @@
+/*
+############################################################################
+CSS for Typesetter CMS plugin YouTube Embed
+Author: J. Krausz
+Date: 2017-08-03
+Version 1.0b3
+######################################################################
+*/
+
+.youtube-embed-player.youtube-embed-responsive_16by9,
+.youtube-embed-player.youtube-embed-responsive_4by3 {
+display:block;
+-webkit-box-sizing:border-box;
+-moz-box-sizing:border-box;
+-ms-box-sizing:border-box;
+-o-box-sizing:border-box;
+box-sizing:border-box;
+height:0;
+overflow:hidden;
+padding:0;
+position:relative;
+}
+
+.youtube-embed-player.youtube-embed-responsive_16by9  { padding-bottom:56.25%; }
+.youtube-embed-player.youtube-embed-responsive_4by3   { padding-bottom:75%; }
+
+.youtube-embed-player iframe {
+border:none;
+}
+
+.youtube-embed-player.youtube-embed-responsive_16by9 iframe,
+.youtube-embed-player.youtube-embed-responsive_4by3 iframe {
+position:absolute;
+top:0;
+bottom:0;
+left:0;
+right:0;
+width:100%;
+height:100%;
+}
