@@ -1,14 +1,15 @@
 <?php
-/*
-######################################################################
-PHP class for Typesetter CMS plugin YouTube Embed
-Author: J. Krausz
-Date: 2017-08-03
-Version 1.0b3
-######################################################################
-*/
+/**
+ * ######################################################################
+ * PHP class for Typesetter CMS plugin YouTube Embed
+ * Authors: J. Krausz, Mahotilo
+ * Date: 2019-11-09
+ * Version: 1.0-b4
+ * ######################################################################
+ */
 
 defined('is_running') or die('Not an entry point...');
+
 
 class YouTubeEmbed {
 
@@ -16,7 +17,6 @@ class YouTubeEmbed {
     global $page, $addonRelativeCode;
     $page->css_user[] = $addonRelativeCode . '/YouTubeEmbed.css';
     $page->head_js[]  = $addonRelativeCode . '/YouTubeEmbed.js';
-    common::AddColorBox();
   }
 
 
@@ -42,14 +42,15 @@ class YouTubeEmbed {
 
 
   static function DefaultContent($default_content, $type){
+    global $addonRelativeCode;
     if( $type !== 'YouTube_Embed' ){
       return $default_content;
     }
-    global $addonRelativeCode;
+
     if( $type == 'YouTube_Embed' ){
       $newSection = array(
       'content'   => '<div class="youtube-embed-player youtube-embed-responsive_16by9">'
-                   .  '<iframe src="//www.youtube.com/embed/M7lc1UVf-VE"></iframe>'
+                   .   '<iframe id="YTE-' . microtime() . '" src="//www.youtube.com/embed/M7lc1UVf-VE&enablejsapi=1" title="Video_M7lc1UVf-VE"></iframe>'
                    . '</div>',
       'gp_label'  => 'YouTube Embedding',
       'gp_color'  => '#e62117',
@@ -73,10 +74,11 @@ class YouTubeEmbed {
 
 
   static function InlineEdit_Scripts($scripts, $type){
+    global $addonRelativeCode, $addonCodeFolder, $addonFolderName;
+
     if( $type !== 'YouTube_Embed' ){
       return $scripts;
     }
-    global $addonRelativeCode, $addonCodeFolder, $addonFolderName;
 
     // addon JS Data Object/basepath
     $addonBasePath = (strpos($addonRelativeCode, 'addons/') > 0) 
@@ -85,8 +87,8 @@ class YouTubeEmbed {
     echo 'var YouTubeEmbed = { base : "' . $addonBasePath . '" }; ';
 
     // scripts
-    //$scripts[] = $addonCodeFolder . '/YouTubeEmbed_edit.js'; 
-    $scripts[] = $addonCodeFolder . '/YouTubeEmbed_edit.min.js'; 
+    // $scripts[] = $addonCodeFolder . '/YouTubeEmbed_edit.min.js'; 
+    $scripts[] = $addonCodeFolder . '/YouTubeEmbed_edit.js'; 
     return $scripts;
   }
 

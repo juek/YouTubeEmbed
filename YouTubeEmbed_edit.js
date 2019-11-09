@@ -1,11 +1,11 @@
-/*
-######################################################################
-JS/jQuery script for Typesetter CMS plugin YouTube Embed
-Author: J. Krausz
-Date: 2017-08-03
-Version 1.0b3
-######################################################################
-*/
+/**
+ * ###########################################################
+ * JS/jQuery script for Typesetter CMS plugin YouTube Embed
+ * Author: J. Krausz, mahotilo
+ * Date: 2019-11-03
+ * Version 1.0-b4
+ * ###########################################################
+ */
 
 function gp_init_inline_edit(area_id, section_object) { 
 
@@ -1025,9 +1025,11 @@ function gp_init_inline_edit(area_id, section_object) {
     }
     */
     var the_iframe = gp_editor.edit_div.find("iframe");
+    the_iframe.attr("id", 'YTE_'+Date.now());    
+    the_iframe.attr("title", 'Video_'+gp_editor.video);    
     var new_src = '//www.youtube.com/embed' + (gp_editor.video ? '/'+gp_editor.video : '');
     if( !$.isEmptyObject(params) ){
-      new_src += "?" + $.param(params);
+      new_src += "?enablejsapi=1&" + $.param(params);
     }
     the_iframe.attr("src", new_src);
     if( gp_editor.YouTubeParams.fs == "1" ){
@@ -1208,8 +1210,7 @@ function gp_init_inline_edit(area_id, section_object) {
 
   // hide ajax overlay
   loaded();
-  // neded to fíx editor overflow/scrolling
+  // neded to fix editor overflow/scrolling
   $(window).trigger("resize");
 
 } /* main fnc gp_init_inline_edit --end */
-
