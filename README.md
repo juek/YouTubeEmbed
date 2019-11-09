@@ -28,5 +28,9 @@ See also [WIP plugin page](https://typesetter-addons.grafikrausz.at/YouTube-Embe
 3. Install using Typesetter's Admin Toolbox &rarr; Plugins &rarr; Manage &rarr; Available &rarr; YouTubeEmbed
 
 
+## Authors
+[juek](https://github.com/juek), [mahotilo](https://github.com/mahotilo)
+
+
 ## Licenses
 Plugin: GPL 2
