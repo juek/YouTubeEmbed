@@ -74,10 +74,10 @@ onYouTubeIframeAPIReady = function(){
         // el = el[0]; // get DOM element from jQuery object
         var rect = el.getBoundingClientRect(); 
         return (
-          rect.top >= 0 &&
-          rect.left >= 0 &&
-          rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-          rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+          rect.top + rect.height*0.5 >= 0 &&
+          rect.left + rect.width*0.5 >= 0 &&
+          rect.bottom - rect.height*0.5 <= (window.innerHeight || document.documentElement.clientHeight) &&
+          rect.right - rect.width*0.5 <= (window.innerWidth || document.documentElement.clientWidth)
         );
       }
 
