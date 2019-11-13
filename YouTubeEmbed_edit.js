@@ -7,7 +7,8 @@
  * ###########################################################
  */
 
-function gp_init_inline_edit(area_id, section_object) { 
+
+function gp_init_inline_edit(area_id, section_object){ 
 
   $gp.LoadStyle( YouTubeEmbed.base + '/YouTubeEmbed_edit.css' );
   gp_editing.editor_tools();
@@ -1047,37 +1048,8 @@ function gp_init_inline_edit(area_id, section_object) {
     gp_editor.ui.embed_code.val(the_iframe[0].outerHTML.replace(/\&amp;/g,"&"));
     
     gp_editor.isDirty = true;
-    
-    // console.log("params: " , params);
-    // console.log("params.length: " , params.length);
-    // console.log("$.param: " + $.param(params));
-    // console.log("new_src: " + new_src);
 
   }; /* fnc gp_editor.setYouTubeParams --end */
-
-
-
-  /*
-  gp_editor.qs2JSON = function(qs){
-    var pairs = qs.split('&');
-    var result = {};
-    pairs.forEach(function(pair){
-      var pair = pair.split('=');
-      var key = pair[0];
-      var value = decodeURIComponent(pair[1] || '');
-      if( result[key] ){
-        if( Object.prototype.toString.call(result[key]) === '[object Array]' ){
-          result[key].push(value);
-        }else{
-          result[key] = [result[key], value];
-        }
-      }else{
-        result[key] = value;
-      }
-    });
-    return JSON.parse(JSON.stringify(result));
-  };
-  */
 
 
 
@@ -1088,7 +1060,6 @@ function gp_init_inline_edit(area_id, section_object) {
   var isDefaultContent = gp_editor.getEmbedCode(false); 
   gp_editor.getSize();
   gp_editor.getYouTubeParams();
-
 
 
   /* --- RENDER EDITOR AREA --- */
