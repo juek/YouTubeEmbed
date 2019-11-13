@@ -24,12 +24,6 @@ $(function(){
   });
 });
 
-$(document).on('SectionAdded SectionCopied', function(evt){
-  console.log(evt);
-  var dynamic_id = 'ytp-' + Math.random().toString(16).slice(2);
-  $(evt.target).find('iframe').attr('id', dynamic_id);
-});
-
 
 onYouTubeIframeAPIReady = function(){
 
@@ -109,6 +103,12 @@ onYouTubeIframeAPIReady = function(){
 
   $('.youtube-embed-player > iframe').each(function(){
     LoadVideo($(this).attr('id'));
+  });
+
+  $(document).on('SectionAdded SectionCopied', function(evt){
+    var dynamic_id = 'ytp-' + Math.random().toString(16).slice(2);
+    $(evt.target).find('iframe').attr('id', dynamic_id);
+    // LoadVideo(dynamic_id); // won't work this way
   });
 
 };
