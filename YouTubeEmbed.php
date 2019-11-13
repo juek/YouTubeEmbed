@@ -50,7 +50,8 @@ class YouTubeEmbed {
     if( $type == 'YouTube_Embed' ){
       $newSection = array(
       'content'   => '<div class="youtube-embed-player youtube-embed-responsive_16by9">'
-                   .   '<iframe id="YTE-' . microtime() . '" src="//www.youtube.com/embed/M7lc1UVf-VE&enablejsapi=1" title="Video_M7lc1UVf-VE"></iframe>'
+                   .   '<iframe id="ytp-' . microtime() . '" src="//www.youtube.com/embed/M7lc1UVf-VE&enablejsapi=1" '
+                   .   'title="YouTube Developers Live: Embedded Web Player Customization"></iframe>'
                    . '</div>',
       'gp_label'  => 'YouTube Embedding',
       'gp_color'  => '#e62117',
