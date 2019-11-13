@@ -14,16 +14,40 @@ tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-// Played video will pause when becoming invisible and resume when becoming visible again
-// Playback starts by the user. If user paused video, it stays paused
 
 $(function(){
   $('.youtube-embed-player > iframe').each(function(){
     var dynamic_id = 'ytp-' + Math.random().toString(16).slice(2);
     $(this).attr('id', dynamic_id);
   });
+
+  // That's for YouTube embeddings in SliderFactoy slides: 
+  // Stop playing all vids in current slider on slide change
+  $('.gpPrevSlide, .gpNextSlide').on('click', function(){
+    $wrapper = $(this).closest('.gpSlideWrapper');
+    stopAllYouTubeEmbeddingsInside($wrapper);
+  });
+
+  // SliderFactoy as of 1.0.2 triggers gpSlideChangeBefore and gpSlideChangeAfter events
+  $(document).on('gpSlideChangeAfter', '.gpSlideWrapper', function(evt){
+    $wrapper = $(evt.target);
+    stopAllYouTubeEmbeddingsInside($wrapper);
+  });
+
+  function stopAllYouTubeEmbeddingsInside($wrapper){
+    var $youTubeIframes = $wrapper.find(".youtube-embed-player > iframe");
+    if( $youTubeIframes.length ){
+      $youTubeIframes.each( function(){
+        $(this)[0].contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+      });
+    }
+  }
+
 });
 
+
+// Played video will pause when scrolled out of sight and resume when becoming visible again
+// Playback starts by the user. If user paused video, it stays paused
 
 onYouTubeIframeAPIReady = function(){
 
