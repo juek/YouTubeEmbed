@@ -17,7 +17,16 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 // Played video will pause when becoming invisible and resume when becoming visible again
 // Playback starts by the user. If user paused video, it stays paused
 
+$(function(){
+  $('.youtube-embed-player > iframe').each(function(){
+    var dynamic_id = 'ytp-' + Math.random().toString(16).slice(2);
+    $(this).attr('id', dynamic_id);
+  });
+});
+
+
 onYouTubeIframeAPIReady = function(){
+  console.log('onYouTubeIframeAPIReady');
 
   var LoadVideo = function(player_id){
 
@@ -29,30 +38,27 @@ onYouTubeIframeAPIReady = function(){
                     },
 
       NewPlayer   : function(){
-                      var _this = this;
                       this.Player = new YT.Player(player_id, {});
-                      _this.Player.$element = $('#' + player_id);
+                      this.Player.element = document.getElementById(player_id);
                       this.Player.Paused = 0;
                     },
 
       Play        : function(){
-                      var _this = this;
-                      if( (this.Player.getPlayerState() === 2 ) && (this.Player.Paused == 1) ){
+                      if( typeof(this.Player.getPlayerState) == 'function' && this.Player.getPlayerState() === 2  && this.Player.Paused == 1 ){
                         this.Player.playVideo();
                         this.Player.Paused = 0;
                       }
                     },
 
       Pause       : function(){
-                      var _this = this;
-                      if( this.Player.getPlayerState() === 1 ){
+                      if( typeof(this.Player.getPlayerState) == 'function' && this.Player.getPlayerState() === 1 ){
                         this.Player.pauseVideo();
                         this.Player.Paused = 1;
                       }
                     },
 
       ScrollControl : function(){
-                        if( Utils.IsElementInViewport(this.Player.$element[0]) ){
+                        if( Utils.IsElementInViewport(this.Player.element) ){
                           this.Play();
                         }else{
                           this.Pause();
@@ -62,7 +68,17 @@ onYouTubeIframeAPIReady = function(){
       EventHandler  : function(){
                         var _this = this;
                         $(window).on('scroll', function(){
-                          _this.ScrollControl();
+                          var now = +new Date;
+                          if( _this.lastExec && now < _this.lastExec + 250 ){
+                            clearTimeout(_this.deferTimer);
+                            _this.deferTimer = setTimeout(function(){
+                              _this.lastExec = now;
+                              _this.ScrollControl();
+                            }, 250);
+                          }else{
+                            _this.lastExec = now;
+                            _this.ScrollControl();
+                          }
                         });
                       }
     };
@@ -71,14 +87,14 @@ onYouTubeIframeAPIReady = function(){
     var Utils = {
 
       IsElementInViewport : function(el){
-        // el = el[0]; // get DOM element from jQuery object
         var rect = el.getBoundingClientRect(); 
-        return (
-          rect.top + rect.height*0.5 >= 0 &&
-          rect.left + rect.width*0.5 >= 0 &&
-          rect.bottom - rect.height*0.5 <= (window.innerHeight || document.documentElement.clientHeight) &&
-          rect.right - rect.width*0.5 <= (window.innerWidth || document.documentElement.clientWidth)
+        var it_is = (
+          rect.top    + rect.height * 0.5 >= 0 &&
+          rect.left   + rect.width  * 0.5 >= 0 &&
+          rect.bottom - rect.height * 0.5 <= (window.innerHeight || document.documentElement.clientHeight) &&
+          rect.right  - rect.width  * 0.5 <= (window.innerWidth || document.documentElement.clientWidth)
         );
+        return it_is;
       }
 
     };
