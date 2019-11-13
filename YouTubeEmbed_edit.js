@@ -706,7 +706,15 @@ function gp_init_inline_edit(area_id, section_object) {
   gp_editor.applyEmbedCode = function(){
     gp_editor.embedCode = gp_editor.ui.embed_code.val();
     gp_editor.edit_div.find("iframe").remove();
-    gp_editor.edit_div.find(".youtube-embed-player").append(gp_editor.embedCode);
+    var $new_iframe = $(gp_editor.embedCode);
+    var new_src = $new_iframe.attr('src');
+    if( new_src && new_src.indexOf('enablejsapi') == -1 ){
+      new_src += (new_src.indexOf('?') == -1) ? '?enablejsapi=1' : '&enablejsapi=1';
+      $new_iframe.attr('src', new_src);
+    }
+    gp_editor.edit_div.find(".youtube-embed-player").append($new_iframe);
+    var html = $new_iframe[0].outerHTML;
+    gp_editor.ui.embed_code.val(html);
     gp_editor.isDirty = true;
   }; /* fnc gp_editor.applyEmbedCode --end */
 
@@ -1025,8 +1033,8 @@ function gp_init_inline_edit(area_id, section_object) {
     }
     */
     var the_iframe = gp_editor.edit_div.find("iframe");
-    the_iframe.attr("title", 'Video_'+gp_editor.video);    
-    var new_src = '//www.youtube.com/embed' + (gp_editor.video ? '/'+gp_editor.video : '') + '?enablejsapi=1';
+    the_iframe.attr("title", 'Video_' + gp_editor.video);    
+    var new_src = 'https://www.youtube.com/embed' + (gp_editor.video ? '/'+gp_editor.video : '') + '?enablejsapi=1';
     if( !$.isEmptyObject(params) ){
       new_src += "&" + $.param(params);
     }
