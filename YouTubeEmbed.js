@@ -24,9 +24,14 @@ $(function(){
   });
 });
 
+$(document).on('SectionAdded SectionCopied', function(evt){
+  console.log(evt);
+  var dynamic_id = 'ytp-' + Math.random().toString(16).slice(2);
+  $(evt.target).find('iframe').attr('id', dynamic_id);
+});
+
 
 onYouTubeIframeAPIReady = function(){
-  console.log('onYouTubeIframeAPIReady');
 
   var LoadVideo = function(player_id){
 
