@@ -1034,8 +1034,8 @@ function gp_init_inline_edit(area_id, section_object){
     }
     */
     var the_iframe = gp_editor.edit_div.find("iframe");
-    the_iframe.attr("title", 'Video_' + gp_editor.video);    
-    var new_src = 'https://www.youtube.com/embed' + (gp_editor.video ? '/'+gp_editor.video : '') + '?enablejsapi=1';
+    the_iframe.attr("title", 'Video_' + gp_editor.video);
+    var new_src = 'https://www.youtube-nocookie.com/embed' + (gp_editor.video ? '/'+gp_editor.video : '') + '?enablejsapi=1';
     if( !$.isEmptyObject(params) ){
       new_src += "&" + $.param(params);
     }

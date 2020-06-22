@@ -50,7 +50,7 @@ class YouTubeEmbed {
     if( $type == 'YouTube_Embed' ){
       $newSection = array(
       'content'   => '<div class="youtube-embed-player youtube-embed-responsive_16by9">'
-                   .   '<iframe id="ytp-' . \gp\tool::RandomString(12) . '" src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1" '
+                   .   '<iframe id="ytp-' . \gp\tool::RandomString(12) . '" src="https://www.youtube-nocookie.com/embed/M7lc1UVf-VE?enablejsapi=1" '
                    .   'title="YouTube Developers Live: Embedded Web Player Customization"></iframe>'
                    . '</div>',
       'gp_label'  => 'YouTube Embedding',
